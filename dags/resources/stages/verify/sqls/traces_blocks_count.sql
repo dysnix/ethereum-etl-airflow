@@ -4,6 +4,7 @@ select count(distinct(block_number))
 from `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.traces`
 where trace_type = 'reward' and reward_type = 'block'
     and date(block_timestamp) <= '{{ds}}'
+    and block_number > 0 -- exclude genesis block (reth returns a reward trace for it, geth does not)
     and value > 0
 ) =
 (
