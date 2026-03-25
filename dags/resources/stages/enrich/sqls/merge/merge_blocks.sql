@@ -1,7 +1,7 @@
 merge `{{params.destination_dataset_project_id}}.{{params.destination_dataset_name}}.blocks` dest
 using {{params.dataset_name_temp}}.{{params.source_table}} source
 on false
-when not matched and date(timestamp) = '{{ds}}' then
+when not matched and (date(timestamp) = '{{ds}}' or (number = 0 and '{{ds}}' = '2015-07-30')) then
 insert (
     timestamp,
     number,
