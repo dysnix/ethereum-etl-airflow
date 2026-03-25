@@ -1,4 +1,6 @@
 select if(
+'{{ds}}' < '2016-01-17'
+or
 (
 select count(*) from `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.token_transfers`
 where date(block_timestamp) = '{{ds}}'
