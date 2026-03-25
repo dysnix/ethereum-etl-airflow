@@ -25,5 +25,6 @@ SELECT
 FROM {{params.dataset_name_raw}}.blocks AS blocks
 where true
     {% if not params.load_all_partitions %}
-    and date(timestamp_seconds(blocks.timestamp)) = '{{ds}}'
+    and (date(timestamp_seconds(blocks.timestamp)) = '{{ds}}'
+         or (blocks.number = 0 and '{{ds}}' = '2015-07-30'))
     {% endif %}
